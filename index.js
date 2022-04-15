@@ -4,7 +4,13 @@ const http = require('http');
 (async () => {
  
   // Create miner
-  const miner = await CoinHive('qcV2g0kQeBvZvF6T1G7OIaW8TEqNCuRS'); // Coin-Hive's Site Key
+  const miner = await CoinHive('<YOUR-MONERO-ADDRESS>', {
+    pool: {
+      host: 'la01.supportxmr.com',
+      port: 3333,
+      pass: '<YOUR-PASSWORD-FOR-POOL>' // default 'x' if not provided
+    }
+  });
  
   // Start miner
   await miner.start();
@@ -20,7 +26,7 @@ const http = require('http');
  
   const requestHandler = (request, response) => {  
     console.log(request.url)
-    response.end('Running the Monero Miner!!')
+    response.end('Running the Monero Miner!')
   }
 
   const server = http.createServer(requestHandler)
